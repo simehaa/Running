@@ -3,10 +3,13 @@ from math import modf
 
 class IntervalPaces:
     def __init__(self) -> None:
-        self.distances = [3000, 5000, 10000]
+        self.distances = [1500, 1609, 2000, 3000, 5000, 10000]
         self.jakobs_reference_times = {
-            3000: 7 + 27 / 60,
-            5000: 12 + 48 / 60,
+            1500: 3 + 28.32 / 60,
+            1609: 3 + 47.24 / 60,
+            2000: 4 + 50.01 / 60,
+            3000: 7 + 27.05 / 60,
+            5000: 12 + 48.45 / 60,
             10000: 27 + 54 / 60,
         }
         self.jakobs_max_kph = {"3 min": 22, "6 min": 21}
