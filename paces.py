@@ -3,7 +3,6 @@ from math import modf
 
 class IntervalPaces:
     def __init__(self) -> None:
-        self.distances = [1500, 1609, 2000, 3000, 5000, 10000]
         self.jakobs_reference_times = {
             1500: 3 + 28.32 / 60,
             1609: 3 + 47.24 / 60,
@@ -12,7 +11,10 @@ class IntervalPaces:
             5000: 12 + 48.45 / 60,
             10000: 27 + 54 / 60,
         }
-        self.jakobs_max_kph = {"3 min": 22, "6 min": 21}
+        self.jakobs_max_kph = {
+            "3 min": 22, 
+            "6 min": 21
+        }
         self.title_width = 60
         self.title_border = "="
 
@@ -33,21 +35,18 @@ class IntervalPaces:
         2) Recent race PR
         """
         # 1: Select a race as reference
-        print(self._title("Part 1 - Recent race distance"))
-        choices = []
-        prompt = "Select a race distance: "
-        for i, dis in enumerate(self.distances):
-            prompt += f"[{i}] {dis} m, "
-            choices.append(i)
+        print(self._title("Part 1 - Race Distance"))
+        prompt = "Select a recent race distance (meters): "
+        for i, distance in enumerate(self.jakobs_reference_times.keys()):
+            prompt += f"{distance}, "
         prompt = prompt[:-2] + ": "
-        choice = -1
-        while choice not in choices:
-            choice = int(input(prompt))
-        distance = self.distances[choice]
+        distance = 0
+        while distance not in self.jakobs_reference_times.keys():
+            distance = int(input(prompt))
 
         # 2: Provice race time
         print("\n")
-        print(self._title(f"Part 2 - Provide your {distance} m PR"))
+        print(self._title(f"Part 2 - {distance} m time"))
         minutes = -1
         while not (minutes >= 0):
             minutes = int(input("Race time minutes: "))
